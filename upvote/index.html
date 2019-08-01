@@ -12,24 +12,24 @@
     <h2 class="title has-text-centered dividing-header">UpVote!</h2>
 
     <div class="section">
-      <article class="media">
+      <article v-for="submission in submissions" v-bind:key="submission.id" class="media">
         <figure class="media-left">
-          <img v-bind:src="submissions[0].submissionImage" class="image is-64x64">
+          <img v-bind:src="submission.submissionImage" class="image is-64x64">
         </figure>
 
         <div class="media-content">
           <div class="content">
             <p>
               <strong>
-                <a v-bind:href="submissions[0].url">{{ submissions[0].title }}</a>
-                <span class="tag is-small">#{{ submissions[0].id }}</span>
+                <a v-bind:href="submission.url">{{ submission.title }}</a>
+                <span class="tag is-small">#{{ submissions.id }}</span>
               </strong>
               <br>
-              {{ submissions[0].description }}
+              {{ submission.description }}
               <br>
               <small class="is-size-7">
                 Submitted by:
-                <img v-bind:src="submissions[0].avatar" class="image is-24x24">
+                <img v-bind:src="submission.avatar" class="image is-24x24">
               </small>
             </p>
           </div>
@@ -38,7 +38,7 @@
         <div class="media-right">
           <span class="icon is-small">
             <i class="fa fa-chevron-up"></i>
-            <strong class="has-text-info">{{ submissions[0].votes }}</strong>
+            <strong class="has-text-info">{{ submission.votes }}</strong>
           </span>
         </div>
       </article>
