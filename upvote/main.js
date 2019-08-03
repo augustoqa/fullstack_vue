@@ -3,14 +3,14 @@ const submissionComponent = {
     template:
     `<div style="display: flex; width: 100%">
        <figure class="media-left">
-          <img v-bind:src="submission.submissionImage" class="image is-64x64">
+          <img :src="submission.submissionImage" class="image is-64x64">
         </figure>
 
         <div class="media-content">
           <div class="content">
             <p>
               <strong>
-                <a v-bind:href="submission.url">{{ submission.title }}</a>
+                <a :href="submission.url">{{ submission.title }}</a>
                 <span class="tag is-small">#{{ submission.id }}</span>
               </strong>
               <br>
@@ -18,14 +18,14 @@ const submissionComponent = {
               <br>
               <small class="is-size-7">
                 Submitted by:
-                <img v-bind:src="submission.avatar" class="image is-24x24">
+                <img :src="submission.avatar" class="image is-24x24">
               </small>
             </p>
           </div>
         </div>
         
         <div class="media-right">
-          <span class="icon is-small" v-on:click="upvote(submission.id)">
+          <span class="icon is-small" @click="upvote(submission.id)">
             <i class="fa fa-chevron-up"></i>
             <strong class="has-text-info">{{ submission.votes }}</strong>
           </span>
