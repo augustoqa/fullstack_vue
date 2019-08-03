@@ -17,34 +17,12 @@
         v-bind:key="submission.id" 
         v-bind:class="{ 'blue-border': submission.votes >= 20 }"
         class="media">
-        <figure class="media-left">
-          <img v-bind:src="submission.submissionImage" class="image is-64x64">
-        </figure>
-
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>
-                <a v-bind:href="submission.url">{{ submission.title }}</a>
-                <span class="tag is-small">#{{ submissions.id }}</span>
-              </strong>
-              <br>
-              {{ submission.description }}
-              <br>
-              <small class="is-size-7">
-                Submitted by:
-                <img v-bind:src="submission.avatar" class="image is-24x24">
-              </small>
-            </p>
-          </div>
-        </div>
         
-        <div class="media-right">
-          <span class="icon is-small" v-on:click="upvote(submission.id)">
-            <i class="fa fa-chevron-up"></i>
-            <strong class="has-text-info">{{ submission.votes }}</strong>
-          </span>
-        </div>
+        <submission-component
+          v-bind:submission="submission"
+          v-bind:submissions="sortedSubmissions">  
+        </submission-component>
+
       </article>
     </div>
   </div>
