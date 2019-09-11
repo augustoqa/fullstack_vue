@@ -30,6 +30,15 @@ export const store = {
         eventObj.details = newEventDetails;
         eventObj.edit = false;
     },
+    deleteEvent (dayId, eventDetails) {
+        const dayObj = this.state.seedData.find(day => day.id === dayId);
+
+        const eventIndexToRemove = dayObj.events.findIndex(
+            event => event.details === eventDetails
+        );
+        
+        dayObj.events.splice(eventIndexToRemove, 1);
+    },
     resetEditOfAllEvents () {
         this.state.seedData.map((dayObj) => {
             dayObj.events.map((event) => {
