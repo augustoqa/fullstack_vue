@@ -1,3 +1,5 @@
+const EventBus = new Vue();
+
 const inputComponent = {
   template: `<input 
   		:placeholder="placeholder"
@@ -12,7 +14,7 @@ const inputComponent = {
   },
   methods: {
     monitorEnterKey() {
-      this.$emit('add-note', {
+      EventBus.$emit('add-note', {
         note: this.input,
         timestamp: new Date().toLocaleString()
       });
@@ -36,5 +38,8 @@ new Vue({
       this.notes.push(event.note);
       this.timestamps.push(event.timestamp);
     }
+  },
+  created() {
+    EventBus.$on('add-note', event => this.addNote(event));
   }
 })
