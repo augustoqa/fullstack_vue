@@ -10,16 +10,24 @@ const InputForm = {
                 </div>
                 <button class="ui button">Submit</button>
             </form>
+            <div class="ui segment">
+                <h4 class="ui header">Items</h4>
+                <ul>
+                    <li v-for="item in items" class="item">{{ item }}</li>
+                </ul>
+            </div>
         </div>`,
     data() {
         return {
-            newItem: ''
+            newItem: '',
+            items: []
         }
     },
     methods: {
         submitForm(evt) {
+            this.items.push(this.newItem);
+            this.newItem = '';
             evt.preventDefault();
-            console.log(this.newItem);
         }
     }
 };
