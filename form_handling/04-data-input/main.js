@@ -6,7 +6,27 @@ const InputForm = {
         <div class="input-form">
             <form @submit="submitForm" class="ui form">
                 <div class="field">
-                    <input v-model="newItem" type="text" placeholder="Add an item!">
+                    <label>New Item</label>
+                    <input v-model="fields.newItem" type="text" placeholder="Add an item!">
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input v-model="fields.email" type="text" placeholder="What's your email?" />
+                </div>
+                <div class="field">
+                    <label>Urgency</label>
+                    <select v-model="fields.urgency" class="ui fluid search dropdown">
+                        <option disabled value="">Please select one</option>
+                        <option>Nonessential</option>
+                        <option>Moderate</option>
+                        <option>Urgent</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input v-model="fields.termsAndConditions" type="checkbox" />
+                        <label>I accept the terms and conditions</label>
+                    </div>
                 </div>
                 <button class="ui button">Submit</button>
             </form>
@@ -19,13 +39,18 @@ const InputForm = {
         </div>`,
     data() {
         return {
-            newItem: '',
+            fields: {
+                newItem: '',
+                email: '',
+                urgency: '',
+                termsAndConditions: false
+            },
             items: []
         }
     },
     methods: {
         submitForm(evt) {
-            this.items.push(this.newItem);
+            this.items.push(this.fields.newItem);
             this.newItem = '';
             evt.preventDefault();
         }
