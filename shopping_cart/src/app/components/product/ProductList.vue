@@ -4,8 +4,11 @@
       <i class="fa fa-2x fa-user-circle"></i>
     </div>
     <div class="product-list">
-      <div v-for="productItem in productItems" :key="productItem.id"
-        class="product-list--item">
+      <div
+        v-for="productItem in productItems"
+        :key="productItem.id"
+        class="product-list--item"
+      >
         <ProductListItem :productItem="productItem" />
       </div>
     </div>
@@ -16,22 +19,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ProductListItem from './ProductListItem';
+import { mapGetters } from 'vuex'
+import ProductListItem from './ProductListItem'
 
 export default {
   name: 'ProductList',
   computed: {
-    ...mapGetters([
-      'productItems'
-    ])
-  },
-  created() {
-    this.$store.dispatch('getProductItems');
+    ...mapGetters(['productItems']),
   },
   components: {
-    ProductListItem
-  }
+    ProductListItem,
+  },
 }
 </script>
 
@@ -41,7 +39,7 @@ export default {
 }
 
 .products--header {
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #e8e8e8;
   padding-bottom: 15px;
 }
 
