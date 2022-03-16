@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import CartList from '../components/cart/CartList'
 import ProductList from '../components/product/ProductList'
 import NotFound from '../components/NotFound'
+import ProductItem from '../components/product/ProductItem'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,6 +18,11 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/products',
+    },
+    {
+      path: '/products/:id',
+      component: ProductItem,
+      props: true,
     },
     {
       path: '/:pathMatch(.*)*',
