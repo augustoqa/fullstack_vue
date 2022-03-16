@@ -20,6 +20,7 @@ const router = createRouter({
       redirect: '/products',
     },
     {
+      name: 'products',
       path: '/products/:id',
       component: ProductItem,
       props: true,

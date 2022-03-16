@@ -1,5 +1,8 @@
 <template>
-  <section id="product-item" class="box">
+  <section id="product-item" class="box" v-if="productItem">
+    <span class="return-icon" @click="$router.go(-1)">
+      <i class="fa fa-arrow-left is-primary"></i>
+    </span>
     <div class="product-item__details">
       <h1 class="title is-4">
         <p>{{ productItem.title }}</p>
@@ -12,7 +15,10 @@
         Founded:
         <span class="has-text-weight-bold">{{ productItem.created_at }}</span>
       </p>
-      <button class="button is-primary product-item__button">
+      <button
+        class="button is-primary product-item__button"
+        @click="addAndGoToCart(productItem)"
+      >
         Add to Cart
       </button>
     </div>
@@ -29,6 +35,13 @@ export default {
   computed: {
     productItem() {
       return this.$store.getters.productItemFromId(Number(this.id))
+    },
+  },
+  methods: {
+    addAndGoToCart(productItem) {
+      this.$store.dispatch('addCartItem', productItem).then(() => {
+        this.$router.push('/cart')
+      })
     },
   },
 }
