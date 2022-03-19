@@ -3,6 +3,7 @@ import CartList from '../components/cart/CartList'
 import ProductList from '../components/product/ProductList'
 import NotFound from '../components/NotFound'
 import ProductItem from '../components/product/ProductItem'
+import LoginBox from '../components/login/LoginBox'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -24,6 +25,10 @@ const router = createRouter({
       path: '/products/:id',
       component: ProductItem,
       props: true,
+    },
+    {
+      path: '/login',
+      component: LoginBox,
     },
     {
       path: '/:pathMatch(.*)*',
