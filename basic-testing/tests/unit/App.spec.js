@@ -1,12 +1,30 @@
+import { shallowMount } from '@vue/test-utils'
 import { expect } from 'chai'
 
 import App from '@/App'
 
 describe('App.vue', () => {
-  it('should set correct default data', () => {
-    const initialData = App.data()
+  let wrapper
 
-    expect(initialData.item).to.equal('')
-    expect(initialData.items).to.deep.equal([])
+  beforeEach(() => {
+    wrapper = shallowMount(App)
+  })
+
+  it('should set correct default data', () => {
+    expect(wrapper.vm.item).to.equal('')
+    expect(wrapper.vm.items).to.deep.equal([])
+  })
+
+  it('should render correct contents', () => {
+    expect(wrapper.html()).to.contain('<th>Items</th>')
+    expect(wrapper.html()).to.contain(
+      '<input type="text" class="prompt" placeholder="Add item...">'
+    )
+    expect(wrapper.html()).to.contain(
+      '<button type="submit" class="ui button" disabled="">Add</button>'
+    )
+    expect(wrapper.html()).to.contain(
+      '<span class="ui label">Remove all</span>'
+    )
   })
 })
