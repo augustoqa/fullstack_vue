@@ -1,7 +1,12 @@
 import { expect } from 'chai'
 
+import App from '@/App'
+
 describe('App.vue', () => {
-  it('should run this dummy test', () => {
-    expect('Dummy ' + 'Test!').to.equal('Dummy Test!')
+  it('should set correct default data', () => {
+    const initialData = App.data()
+
+    expect(initialData.item).to.equal('')
+    expect(initialData.items).to.deep.equal([])
   })
 })
