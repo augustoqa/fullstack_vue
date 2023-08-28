@@ -12,9 +12,9 @@
           <th>
             <form class='ui form'>
               <div class='field'>
-                <input type='text' class='prompt' placeholder='Add item...'>
+                <input type='text' v-model="item" class='prompt' placeholder='Add item...'>
               </div>
-              <button type='submit' class='ui button' disabled>Add</button>
+              <button type='submit' class='ui button' :disabled="!item">Add</button>
               <span class='ui label'>Remove all</span>
             </form>
           </th>

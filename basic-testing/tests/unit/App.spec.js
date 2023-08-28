@@ -33,4 +33,24 @@ describe('App.vue', () => {
 
     expect(addItemButton.element.disabled).to.be.true
   })
+
+  describe('the user populates the text input field', () => {
+    let inputField;
+
+    beforeEach(async () => {
+      inputField = wrapper.find('input')
+      inputField.element.value = 'New Item'
+      await inputField.trigger('input')
+    })
+
+    it('should update the "text" data property', () => {
+      expect(wrapper.vm.item).to.equal('New Item')
+    })
+
+    it('should enable the "Add" button when text input is populated', () => {
+      const addItemButton = wrapper.find('.ui.button')
+
+      expect(addItemButton.element.disabled).to.be.false
+    })
+  })
 })
