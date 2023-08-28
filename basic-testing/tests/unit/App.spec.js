@@ -27,4 +27,10 @@ describe('App.vue', () => {
       '<span class="ui label">Remove all</span>'
     )
   })
+
+  it('should have the "Add" button disabled', () => {
+    const addItemButton = wrapper.find('.ui.button')
+
+    expect(addItemButton.element.disabled).to.be.true
+  })
 })
