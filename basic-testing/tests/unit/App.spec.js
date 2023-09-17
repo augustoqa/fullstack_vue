@@ -35,7 +35,7 @@ describe('App.vue', () => {
   })
 
   describe('the user populates the text input field', () => {
-    let inputField;
+    let inputField
 
     beforeEach(async () => {
       inputField = wrapper.find('input')
@@ -51,6 +51,17 @@ describe('App.vue', () => {
       const addItemButton = wrapper.find('.ui.button')
 
       expect(addItemButton.element.disabled).to.be.false
+    })
+
+    describe('and then clears the input', () => {
+      it('should disable the "Add" button', async () => {
+        const addItemButton = wrapper.find('.ui.button')
+
+        inputField.element.value = ''
+        await inputField.trigger('input')
+
+        expect(addItemButton.element.disabled).to.be.true
+      })
     })
   })
 })
