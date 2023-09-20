@@ -79,6 +79,13 @@ describe('App.vue', () => {
         expect(wrapper.vm.items).to.contain('New Item')
         expect(itemList.html()).to.contain('<td>New Item</td>')
       })
+
+      it('should set the "item" data property to a blank string', () => {
+        const inputField = wrapper.find('input')
+
+        expect(wrapper.vm.item).to.equal('')
+        expect(inputField.element.value).to.equal('')
+      })
     })
   })
 })

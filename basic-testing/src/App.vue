@@ -49,6 +49,7 @@ export default {
     addItem(e) {
       e.preventDefault()
       this.items.push(this.item)
+      this.item = ''
     }
   }
 }
