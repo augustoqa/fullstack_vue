@@ -27,7 +27,9 @@
                 <button type="submit" class="ui button" :disabled="!item">
                   Add
                 </button>
-                <span class="ui label">Remove all</span>
+                <span class="ui label" @click="removeAllElements"
+                  >Remove all</span
+                >
               </form>
             </th>
           </tr>
@@ -50,6 +52,9 @@ export default {
       e.preventDefault()
       this.items.push(this.item)
       this.item = ''
+    },
+    removeAllElements() {
+      this.items = []
     }
   }
 }
