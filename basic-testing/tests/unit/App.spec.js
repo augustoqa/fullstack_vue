@@ -86,6 +86,10 @@ describe('App.vue', () => {
         expect(wrapper.vm.item).to.equal('')
         expect(inputField.element.value).to.equal('')
       })
+
+      it('should disable the "Add" button', () => {
+        expect(addItemButton.element.disabled).to.be.true
+      })
     })
   })
 })
