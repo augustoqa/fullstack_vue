@@ -66,23 +66,24 @@ describe('App.vue', () => {
 
     describe('and then submits the form', () => {
       let addItemButton
+      let itemList
+      let inputField
 
       beforeEach(async () => {
-        wrapper.setData({ item: 'New Item' })
         addItemButton = wrapper.find('.ui.button')
+        itemList = wrapper.find('.item-list')
+        inputField = wrapper.find('input')
+
+        wrapper.setData({ item: 'New Item' })
         await addItemButton.trigger('submit')
       })
 
       it('should add a new item to the "items" data property', () => {
-        const itemList = wrapper.find('.item-list')
-
         expect(wrapper.vm.items).to.contain('New Item')
         expect(itemList.html()).to.contain('<td>New Item</td>')
       })
 
       it('should set the "item" data property to a blank string', () => {
-        const inputField = wrapper.find('input')
-
         expect(wrapper.vm.item).to.equal('')
         expect(inputField.element.value).to.equal('')
       })
