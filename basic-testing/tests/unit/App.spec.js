@@ -21,7 +21,7 @@ describe('App.vue', () => {
       '<input type="text" class="prompt" placeholder="Add item...">'
     )
     expect(wrapper.html()).to.contain(
-      '<button type="submit" class="ui button" disabled="">Add</button>'
+      '<button type="submit" class="ui button" disabled=""> Add </button>'
     )
     expect(wrapper.html()).to.contain(
       '<span class="ui label">Remove all</span>'
@@ -61,6 +61,23 @@ describe('App.vue', () => {
         await inputField.trigger('input')
 
         expect(addItemButton.element.disabled).to.be.true
+      })
+    })
+
+    describe('and then submits the form', () => {
+      let addItemButton
+
+      beforeEach(async () => {
+        wrapper.setData({ item: 'New Item' })
+        addItemButton = wrapper.find('.ui.button')
+        await addItemButton.trigger('submit')
+      })
+
+      it('should add a new item to the "items" data property', () => {
+        const itemList = wrapper.find('.item-list')
+
+        expect(wrapper.vm.items).to.contain('New Item')
+        expect(itemList.html()).to.contain('<td>New Item</td>')
       })
     })
   })
