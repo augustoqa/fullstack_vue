@@ -18,29 +18,40 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { ref, computed } from 'vue'
+import { useStore } from 'vuex'
 import ListingsList from './components/ListingsList.vue'
 
 export default {
   name: 'App',
-  data() {
+  setup() {
+    // access the store
+    const store = useStore()
+
+    // reactive data properties
+    const isDark = ref(false)
+
+    // computed properties
+    const darkModeButtonText = computed(() =>
+      isDark.value ? 'Light Mode' : 'Dark Mode'
+    )
+    const listings = computed(() => store.getters.listings)
+    const loading = computed(() => store.getters.loading)
+
+    // methods
+    const toggleDarkMode = () => (isDark.value = !isDark.value)
+
+    // fire off actions for component created lifecycle stage
+    store.dispatch('getListings')
+
+    // return properties for component to access
     return {
-      isDark: false,
+      isDark,
+      darkModeButtonText,
+      listings,
+      loading,
+      toggleDarkMode,
     }
-  },
-  computed: {
-    ...mapGetters(['listings', 'loading']),
-    darkModeButtonText() {
-      return this.isDark ? 'Light Mode' : 'Dark Mode'
-    },
-  },
-  methods: {
-    toggleDarkMode() {
-      this.isDark = !this.isDark
-    },
-  },
-  created() {
-    this.$store.dispatch('getListings')
   },
   components: {
     ListingsList,
