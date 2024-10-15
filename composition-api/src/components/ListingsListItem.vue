@@ -55,10 +55,7 @@ export default {
     const { setNotification } = useNotification()
 
     // methods
-    const removeListing = () => {
-      setNotification('Listing is to be deleted')
-      store.dispatch('removeListing', props.listing)
-    }
+    const removeListing = () => store.dispatch('removeListing', props.listing)
 
     // return properties for component to access
     return {
