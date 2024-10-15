@@ -16,31 +16,42 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
 import ListingsListItem from './ListingsListItem.vue'
 import Notification from './Notification.vue'
 
 export default {
   name: 'ListingsList',
   props: ['listings', 'isDark'],
-  data() {
+  setup() {
+    // access the store
+    const store = useStore()
+
+    // reactive data properties
+    const notification = ref(null)
+
+    // methods
+    const resetListings = () => store.dispatch('resetListings')
+
+    // counted lifecycle hook
+    onMounted(() => {
+      notification.value = 'Welcome to NewlineBnB!'
+
+      setTimeout(() => {
+        notification.value = null
+      }, 1000)
+    })
+
+    // return properties for component to access
     return {
-      notification: null,
+      notification,
+      resetListings,
     }
-  },
-  methods: {
-    ...mapActions(['resetListings']),
   },
   components: {
     ListingsListItem,
     Notification,
-  },
-  mounted() {
-    this.notification = 'Welcome to NewlineBnB!'
-
-    setTimeout(() => {
-      this.notification = null
-    }, 1000)
   },
 }
 </script>
