@@ -44,6 +44,7 @@
 
 <script>
 import { useStore } from 'vuex'
+import useNotification from '../hooks/useNotification'
 
 export default {
   name: 'ListingsListItem',
@@ -51,9 +52,13 @@ export default {
   setup(props) {
     // access the store
     const store = useStore()
+    const { setNotification } = useNotification()
 
     // methods
-    const removeListing = () => store.dispatch('removeListing', props.listing)
+    const removeListing = () => {
+      setNotification('Listing is to be deleted')
+      store.dispatch('removeListing', props.listing)
+    }
 
     // return properties for component to access
     return {
