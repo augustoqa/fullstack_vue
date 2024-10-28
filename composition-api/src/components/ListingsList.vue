@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
-import { useStore } from 'vuex'
+import { inject, onMounted } from 'vue'
 import ListingsListItem from './ListingsListItem.vue'
 import Notification from './Notification.vue'
 import useDarkMode from '../hooks/useDarkMode'
@@ -31,7 +30,7 @@ export default {
   props: ['listings'],
   setup() {
     // access the store
-    const store = useStore()
+    const store = inject('store')
     const { darkMode } = useDarkMode()
     const { notification, setNotification, toggleNotification } =
       useNotification()
@@ -39,7 +38,7 @@ export default {
     // methods
     const resetListings = () => {
       setNotification('Listings have been reset!')
-      store.dispatch('resetListings')
+      return store.actions.resetListings()
     }
 
     // counted lifecycle hook
