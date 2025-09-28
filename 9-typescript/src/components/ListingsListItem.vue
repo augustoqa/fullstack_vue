@@ -2,32 +2,46 @@
   <article class="media mb-5">
     <figure class="media-left">
       <p class="image is-128x128 is-hidden-mobile">
-        <img :src="listing.image">
+        <img :src="listing.image" />
       </p>
     </figure>
     <div class="media-content">
       <div class="content">
-        <p :class="{ 'has-text-white': darkMode}">
-          <strong :class="{ 'has-text-white': darkMode}">
+        <p :class="{ 'has-text-white': darkMode }">
+          <strong :class="{ 'has-text-white': darkMode }">
             {{ listing.title }}
           </strong>
-          <small class="pl-1"
-            :class="{ 'has-text-primary': darkMode, 'has-text-info': !darkMode}">
+          <small
+            class="pl-1"
+            :class="{
+              'has-text-primary': darkMode,
+              'has-text-info': !darkMode,
+            }"
+          >
             {{ listing.address }}
           </small>
-          <br>
+          <br />
           {{ listing.description }}
-          <br>
-          <small class="has-text-weight-bold"
-            :class="{ 'has-text-primary': darkMode, 'has-text-info': !darkMode}">
-            <span>${{ listing.price/100 }}/day</span> · <span>Rating: {{ listing.rating }}/5</span>
+          <br />
+          <small
+            class="has-text-weight-bold"
+            :class="{
+              'has-text-primary': darkMode,
+              'has-text-info': !darkMode,
+            }"
+          >
+            <span>${{ listing.price / 100 }}/day</span> ·
+            <span>Rating: {{ listing.rating }}/5</span>
           </small>
         </p>
       </div>
     </div>
     <div class="media-right">
-      <button class="button is-light is-small"
-        :class="{ 'is-primary': darkMode, 'is-info': !darkMode}" @click="removeListing(listing)">
+      <button
+        class="button is-light is-small"
+        :class="{ 'is-primary': darkMode, 'is-info': !darkMode }"
+        @click="removeListing(listing)"
+      >
         Remove
       </button>
     </div>
@@ -35,28 +49,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, inject } from 'vue'
 
-import useDarkMode from '../hooks/useDarkMode';
-import useNotification from '../hooks/useNotification';
+import useDarkMode from '../hooks/useDarkMode'
+import useNotification from '../hooks/useNotification'
 
 export default defineComponent({
   name: 'ListingsListItem',
-  props: [ 'listing' ],
+  props: ['listing'],
   setup(props) {
-    const store = inject('store');
-    const { darkMode } = useDarkMode();
-    const { setNotification } = useNotification();
+    const store = inject('store')
+    const { darkMode } = useDarkMode()
+    const { setNotification } = useNotification()
 
     const removeListing = () => {
-      setNotification("Listing has been deleted");
-      return store.actions.removeListing(props.listing);
+      setNotification('Listing has been deleted')
+      return store.actions.removeListing(props.listing)
     }
 
     return {
       darkMode,
-      removeListing
+      removeListing,
     }
-  }
-});
+  },
+})
 </script>

@@ -1,25 +1,25 @@
-import { reactive } from 'vue';
+import { reactive } from 'vue'
 
 const data = reactive({
   message: '',
-  active: false
-});
+  active: false,
+})
 
 const useNotification = () => {
   const setNotification = (newMessage) => {
-    data.message = newMessage;
-    return data.active = true;
-  };
+    data.message = newMessage
+    return (data.active = true)
+  }
 
   const toggleNotification = () => {
-    data.active = !data.active;
-  };
+    data.active = !data.active
+  }
 
   return {
     notification: data,
     setNotification,
-    toggleNotification
-  };
+    toggleNotification,
+  }
 }
 
-export default useNotification;
+export default useNotification
