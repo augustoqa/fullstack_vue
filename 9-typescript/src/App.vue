@@ -19,6 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, inject } from 'vue'
+import { Store } from './store'
 import ListingsList from './components/ListingsList.vue'
 
 import useDarkMode from './hooks/useDarkMode'
@@ -26,16 +27,16 @@ import useDarkMode from './hooks/useDarkMode'
 export default defineComponent({
   name: 'App',
   setup() {
-    const store = inject('store')
+    const store = inject<Store>('store')
     const { darkMode, toggleDarkMode } = useDarkMode()
 
     const darkModeButtonText = computed(() => {
       return darkMode.value ? 'Light Mode' : 'Dark Mode'
     })
-    const listings = computed(() => store.state.listings)
-    const loading = computed(() => store.state.loading)
+    const listings = computed(() => store?.state.listings)
+    const loading = computed(() => store?.state.loading)
 
-    store.actions.getListings()
+    if (store) store.actions.getListings()
 
     return {
       darkMode,

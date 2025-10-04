@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, onMounted } from 'vue'
+import { Store } from '../store'
 
 import ListingsListItem from './ListingsListItem.vue'
 import Notification from './Notification.vue'
@@ -31,14 +32,14 @@ export default defineComponent({
   name: 'ListingsList',
   props: ['listings'],
   setup() {
-    const store = inject('store')
+    const store = inject<Store>('store')
     const { darkMode } = useDarkMode()
     const { notification, setNotification, toggleNotification } =
       useNotification()
 
     const resetListings = () => {
       setNotification('Listings have been reset!')
-      return store.actions.resetListings()
+      return store?.actions.resetListings()
     }
 
     onMounted(() => {

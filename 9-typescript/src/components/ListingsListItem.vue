@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
+import { Store } from '../store'
 
 import useDarkMode from '../hooks/useDarkMode'
 import useNotification from '../hooks/useNotification'
@@ -58,13 +59,13 @@ export default defineComponent({
   name: 'ListingsListItem',
   props: ['listing'],
   setup(props) {
-    const store = inject('store')
+    const store = inject<Store>('store')
     const { darkMode } = useDarkMode()
     const { setNotification } = useNotification()
 
     const removeListing = () => {
       setNotification('Listing has been deleted')
-      return store.actions.removeListing(props.listing)
+      return store?.actions.removeListing(props.listing)
     }
 
     return {
