@@ -1,7 +1,12 @@
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import useNotification from './useNotification'
 
 const darkModeActive = ref(false)
+
+export interface DarkModeInfo {
+  darkMode: Ref<boolean>
+  toggleDarkMode: () => void
+}
 
 const useDarkMode = () => {
   const { setNotification } = useNotification()
@@ -13,10 +18,12 @@ const useDarkMode = () => {
     return setNotification(`${type} turned on!`)
   }
 
-  return {
+  const darkModeData: DarkModeInfo = {
     darkMode: darkModeActive,
     toggleDarkMode,
   }
+
+  return darkModeData
 }
 
 export default useDarkMode

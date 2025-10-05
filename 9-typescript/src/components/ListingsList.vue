@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, onMounted } from 'vue'
-import { Store } from '../store'
+import type { Store } from '../store'
 
 import ListingsListItem from './ListingsListItem.vue'
 import Notification from './Notification.vue'

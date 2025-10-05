@@ -50,7 +50,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
-import { Store } from '../store'
+import type { Store } from '../store'
 
 import useDarkMode from '../hooks/useDarkMode'
 import useNotification from '../hooks/useNotification'

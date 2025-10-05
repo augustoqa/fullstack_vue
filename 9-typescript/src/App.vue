@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, inject } from 'vue'
-import { Store } from './store'
+import type { Store } from './store'
 import ListingsList from './components/ListingsList.vue'
 
 import useDarkMode from './hooks/useDarkMode'
