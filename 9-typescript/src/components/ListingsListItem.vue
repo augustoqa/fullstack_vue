@@ -50,14 +50,19 @@
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue'
-import type { Store } from '../store'
+import type { PropType } from 'vue'
+import type { Listing, Store } from '../store'
 
 import useDarkMode from '../hooks/useDarkMode'
 import useNotification from '../hooks/useNotification'
 
 export default defineComponent({
   name: 'ListingsListItem',
-  props: ['listing'],
+  props: {
+    listing: {
+      type: Object as PropType<Listing>,
+    },
+  },
   setup(props) {
     const store = inject<Store>('store')
     const { darkMode } = useDarkMode()

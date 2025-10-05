@@ -2,7 +2,7 @@ import { reactive, readonly } from 'vue'
 import type { DeepReadonly } from 'vue'
 import axios from 'axios'
 
-interface Listing {
+export interface Listing {
   id: string
   title: string
   description: string

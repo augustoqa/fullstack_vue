@@ -11,11 +11,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import type { Prop, PropType } from 'vue'
+import { NotificationInfo } from '../hooks/useNotification'
+
 import useDarkMode from '../hooks/useDarkMode'
 
 export default defineComponent({
   name: 'Notification',
-  props: ['notification', 'toggleNotification'],
+  props: {
+    notification: Object as PropType<NotificationInfo['notification']>,
+    toggleNotification: Function as PropType<
+      NotificationInfo['toggleNotification']
+    >,
+  },
   setup() {
     const { darkMode } = useDarkMode()
 

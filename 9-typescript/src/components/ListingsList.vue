@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted } from 'vue'
-import type { Store } from '../store'
+import { defineComponent, inject, onMounted, PropType } from 'vue'
+import type { Listing, Store } from '../store'
 
 import ListingsListItem from './ListingsListItem.vue'
 import Notification from './Notification.vue'
@@ -30,7 +30,11 @@ import useNotification from '../hooks/useNotification'
 
 export default defineComponent({
   name: 'ListingsList',
-  props: ['listings'],
+  props: {
+    listings: {
+      type: Array as PropType<Listing[]>,
+    },
+  },
   setup() {
     const store = inject<Store>('store')
     const { darkMode } = useDarkMode()
